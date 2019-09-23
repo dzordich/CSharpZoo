@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+
 namespace Zoo.Models
 {
     public class ZooContext : DbContext
