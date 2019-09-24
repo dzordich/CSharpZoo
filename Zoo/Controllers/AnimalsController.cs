@@ -82,7 +82,7 @@ namespace Zoo.Controllers
             _context.Animals.Add(animal);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAnimal", new { id = animal.Id }, animal);
+            return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
         }
 
         // DELETE: api/Animals/5
