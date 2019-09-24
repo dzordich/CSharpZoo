@@ -13,6 +13,7 @@
   <ItemGroup>
     <Compile Remove="Models\EmptyClass.cs" />
     <Compile Remove="Models\EmptyCSharpFile.cs" />
+    <Compile Remove="Models\TestInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
