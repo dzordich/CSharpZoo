@@ -10,6 +10,6 @@ namespace Zoo.Models
         {
         }
 
-        public DbSet<Dog> Dogs { get; set; }
+        public DbSet<IAnimal> IAnimals { get; set; }
     }
 }
