@@ -47,12 +47,18 @@ namespace Zoo.Controllers
         {
             Factory animalmaker = new Zoo.Models.Factory();
             IAnimal newanimal = animalmaker.CreateAnimal(name);
-            _context.Animals.Add(newanimal);
+            //_context.Animals.Add(newanimal);
             return Created("NewAnimal", newanimal);
-
 
         }
 
+        [HttpGet("{name}/speak")]
+        public async Task<IActionResult> AnimalSpeak(string name)
+        {
+            Factory animalspeaker = new Factory();
+            IAnimal animal = animalspeaker.CreateAnimal(name);
+            return Created("AnimalSpeak", animal.Speak());
+        }
 
 
         //// PUT: api/Animals/5
