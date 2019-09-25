@@ -20,27 +20,6 @@ namespace Zoo.Controllers
             _context = context;
         }
 
-        // GET: api/Animals
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<IAnimal>>> GetAnimals()
-        {
-            return await _context.Animals.ToListAsync();
-        }
-
-        //// GET: api/Animals/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<IAnimal>> GetAnimal(long id)
-        //{
-        //    var animal = await _context.Animals.FindAsync(id);
-
-        //    if (animal == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return animal;
-        //}
-
 
         [HttpGet("{name}")]
         public async Task<IActionResult> MakeAnimal(string name)
@@ -61,36 +40,26 @@ namespace Zoo.Controllers
         }
 
 
-        //// PUT: api/Animals/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        //// more details see https://aka.ms/RazorPagesCRUD.
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutAnimal(long id, Animal animal)
+
+        // GET: api/Animals
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<IAnimal>>> GetAnimals()
         //{
-        //    if (id != animal.Id)
+        //    return await _context.Animals.ToListAsync();
+        //}
+
+        //// GET: api/Animals/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<IAnimal>> GetAnimal(long id)
+        //{
+        //    var animal = await _context.Animals.FindAsync(id);
+
+        //    if (animal == null)
         //    {
-        //        return BadRequest();
+        //        return NotFound();
         //    }
 
-        //    _context.Entry(animal).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!AnimalExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
+        //    return animal;
         //}
 
         //// POST: api/Animals
@@ -103,22 +72,6 @@ namespace Zoo.Controllers
         //    await _context.SaveChangesAsync();
 
         //    return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
-        //}
-
-        //// DELETE: api/Animals/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<Animal>> DeleteAnimal(long id)
-        //{
-        //    var animal = await _context.Animals.FindAsync(id);
-        //    if (animal == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Animals.Remove(animal);
-        //    await _context.SaveChangesAsync();
-
-        //    return animal;
         //}
 
         //private bool AnimalExists(long id)
