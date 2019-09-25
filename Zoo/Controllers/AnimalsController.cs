@@ -27,7 +27,7 @@ namespace Zoo.Controllers
             Factory animalmaker = new Zoo.Models.Factory();
             IAnimal newanimal = animalmaker.CreateAnimal(name);
             //_context.Animals.Add(newanimal);
-            return Created("NewAnimal", newanimal);
+            return Created("NewAnimal", new { name = newanimal.Name, speak = newanimal.Speak() });
 
         }
 
