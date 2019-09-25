@@ -1,15 +1,7 @@
 ﻿using System;
 namespace Zoo.Models
 {
-    public class AniAmal
-    {
-        public long Id { get; set; }
-        public string name { get; set; }
-        public string AnimalClass { get; set; }
-        public string AnimalOrder { get; set; }
 
-        
-    }
     public interface IAnimal
     {
         long Id { get; set; }
