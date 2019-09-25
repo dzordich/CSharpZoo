@@ -22,88 +22,102 @@ namespace Zoo.Controllers
 
         // GET: api/Animals
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
+        public async Task<ActionResult<IEnumerable<IAnimal>>> GetAnimals()
         {
             return await _context.Animals.ToListAsync();
         }
 
-        // GET: api/Animals/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Animal>> GetAnimal(long id)
+        //// GET: api/Animals/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<IAnimal>> GetAnimal(long id)
+        //{
+        //    var animal = await _context.Animals.FindAsync(id);
+
+        //    if (animal == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return animal;
+        //}
+
+
+        [HttpGet("{name}")]
+        public async Task<IActionResult> MakeAnimal(string name)
         {
-            var animal = await _context.Animals.FindAsync(id);
+            Factory animalmaker = new Zoo.Models.Factory();
+            IAnimal newanimal = animalmaker.CreateAnimal(name);
+            _context.Animals.Add(newanimal);
+            return Created("NewAnimal", newanimal);
 
-            if (animal == null)
-            {
-                return NotFound();
-            }
 
-            return animal;
         }
 
-        // PUT: api/Animals/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAnimal(long id, Animal animal)
-        {
-            if (id != animal.Id)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(animal).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AnimalExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //// PUT: api/Animals/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        //// more details see https://aka.ms/RazorPagesCRUD.
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutAnimal(long id, Animal animal)
+        //{
+        //    if (id != animal.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return NoContent();
-        }
+        //    _context.Entry(animal).State = EntityState.Modified;
 
-        // POST: api/Animals
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
-        {
-            _context.Animals.Add(animal);
-            await _context.SaveChangesAsync();
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!AnimalExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
-        }
+        //    return NoContent();
+        //}
 
-        // DELETE: api/Animals/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Animal>> DeleteAnimal(long id)
-        {
-            var animal = await _context.Animals.FindAsync(id);
-            if (animal == null)
-            {
-                return NotFound();
-            }
+        //// POST: api/Animals
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        //// more details see https://aka.ms/RazorPagesCRUD.
+        //[HttpPost]
+        //public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
+        //{
+        //    _context.Animals.Add(animal);
+        //    await _context.SaveChangesAsync();
 
-            _context.Animals.Remove(animal);
-            await _context.SaveChangesAsync();
+        //    return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
+        //}
 
-            return animal;
-        }
+        //// DELETE: api/Animals/5
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Animal>> DeleteAnimal(long id)
+        //{
+        //    var animal = await _context.Animals.FindAsync(id);
+        //    if (animal == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        private bool AnimalExists(long id)
-        {
-            return _context.Animals.Any(e => e.Id == id);
-        }
+        //    _context.Animals.Remove(animal);
+        //    await _context.SaveChangesAsync();
+
+        //    return animal;
+        //}
+
+        //private bool AnimalExists(long id)
+        //{
+        //    return _context.Animals.Any(e => e.Id == id);
+        //}
     }
 }
